@@ -1,0 +1,18 @@
+# Estratégia Downloader Pro v2.1
+# Dependências Python
+
+# Interface Gráfica
+customtkinter==5.2.1
+
+# Automação Web
+playwright==1.40.0
+
+# Requisições HTTP Assíncronas
+aiohttp==3.9.1
+
+# Segurança e Criptografia
+cryptography==41.0.7
+keyring==24.3.0
+
+# Nota: Após instalar, execute também:
+# playwright install chromium
