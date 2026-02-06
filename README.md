@@ -236,6 +236,64 @@ Mas **vale muito a pena** ter todo o material organizado!
 - **MELHORIAS.md** - Changelog detalhado da v2.0 (32 melhorias!)
 - **GUIA_MATERIAIS_EXTRAS.md** - Guia completo sobre materiais complementares
 
+## 🐛 Solução de Problemas
+
+### "Materiais extras não estão sendo baixados"
+
+1. Verifique se `baixarExtras: true` em `config.json`
+2. Verifique se está em modo de vídeo (`downloadType: "video"`)
+3. Veja os logs para mensagens de erro
+
+### "Erro ao baixar mapa mental"
+
+**Normal!** Nem todos os vídeos têm todos os materiais. O sistema continua normalmente.
+
+### "Download muito lento com extras"
+
+1. Desative extras temporariamente: `baixarExtras: false`
+2. Baixe apenas extras importantes posteriormente
+3. Use resolução menor (480p)
+
+## 🔒 Segurança
+
+- ✅ Senhas criptografadas com AES-128
+- ✅ Armazenamento no keyring do sistema
+- ✅ Validação de arquivos (magic bytes)
+- ✅ Chave de criptografia oculta (`.key`)
+- ✅ Configurações com backup automático
+
+## 📄 Licença
+
+Este projeto é para uso educacional e pessoal. Respeite os termos de serviço da plataforma Estratégia Concursos.
+
+MIT License - Veja [LICENSE](LICENSE) para detalhes.
+
+## 🙏 Agradecimentos
+
+- [Anthropic](https://www.anthropic.com/) - Pela ajuda na refatoração
+- [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) - Framework de UI
+- [Playwright](https://playwright.dev/) - Automação de navegador
+- Comunidade Python
+
+## 📞 Suporte
+
+Encontrou um bug? Tem uma sugestão?
+
+- 🐛 [Abra uma Issue](https://github.com/seu-usuario/estrategia-downloader-pro/issues)
+- 💬 [Inicie uma Discussão](https://github.com/seu-usuario/estrategia-downloader-pro/discussions)
+
+## 🗺️ Roadmap
+
+### v2.2 (Planejado)
+- [ ] Configurar quais extras baixar (só mapas, só resumos, etc)
+- [ ] Notificações desktop
+- [ ] Download paralelo de materiais
+
+### v3.0 (Futuro)
+- [ ] Interface web (FastAPI + React)
+- [ ] Suporte a outras plataformas
+- [ ] API pública
+
 ---
 
 <div align="center">
@@ -243,5 +301,7 @@ Mas **vale muito a pena** ter todo o material organizado!
 **Desenvolvido com ❤️ e ☕**
 
 **v3.1 - Agora com materiais complementares! 🎉**
+
+[⭐ Star no GitHub](https://github.com/seu-usuario/estrategia-downloader-pro) • [🐛 Reportar Bug](https://github.com/seu-usuario/estrategia-downloader-pro/issues) • [💡 Sugerir Feature](https://github.com/seu-usuario/estrategia-downloader-pro/issues)
 
 </div>
