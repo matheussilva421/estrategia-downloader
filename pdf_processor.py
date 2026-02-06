@@ -45,13 +45,6 @@ class PDFProcessor(BaseCourseProcessor):
         
         logger.info(f"📄 Processador de PDF inicializado (tipos: {self.pdf_types_to_download})")
 
-    # ... (rest of the file until _process_pdf_button)
-
-    # I will rely on the tool to match context. Since I cannot skip lines easily in ReplaceFileContent without separate chunks, 
-    # I will just update __init__ with ReplaceFileContent and then use MultiReplace or another call for the callback.
-    # Actually, I can do it in two tools or one MultiReplace. MultiReplace is safer.
-    # Let's switch to MultiReplace.
-    
     async def process_course(self, page: Page, course_url: str) -> bool:
         """
         Processa curso completo para download de PDFs.
