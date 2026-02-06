@@ -300,7 +300,7 @@ class DownloadManager:
                     '--disable-blink-features=AutomationControlled',
                     '--disable-dev-shm-usage',
                 ],
-                timeout=self.BROWSER_TIMEOUT * 1000
+                timeout=self.BROWSER_TIMEOUT
             )
             
             logger.info("✓ Navegador iniciado com sucesso")
