@@ -96,11 +96,11 @@ class VideoProcessor(BaseCourseProcessor):
             success_count = 0
             failed_count = 0
             
-            for aula_element in aulas:
+            for index, aula_element in enumerate(aulas, 1):
                 await self.check_cancellation()
                 
                 try:
-                    await self._process_lesson(page, aula_element, course_dir, course_url)
+                    await self._process_lesson(page, aula_element, course_dir, course_url, index)
                     success_count += 1
                 except Exception as e:
                     logger.error(f"❌ Erro ao processar aula: {e}")
@@ -126,7 +126,8 @@ class VideoProcessor(BaseCourseProcessor):
         page: Page,
         aula_element: Locator,
         course_dir: Path,
-        course_url: str
+        course_url: str,
+        index: int
     ) -> None:
         """
         Processa uma aula específica para download de vídeos.
@@ -138,7 +139,7 @@ class VideoProcessor(BaseCourseProcessor):
             course_url: URL do curso (para recuperação de erros)
         """
         try:
-            aula_id, lesson_name, _ = await self.extract_lesson_info(aula_element, 0)
+            aula_id, lesson_name, _ = await self.extract_lesson_info(aula_element, index)
             
             lesson_dir = course_dir / lesson_name
             
@@ -204,9 +205,7 @@ class VideoProcessor(BaseCourseProcessor):
             
             progress_key = f'{aula_id}-{video_title}-{video_index}'
             
-            progress_key = f'{aula_id}-{video_title}-{video_index}'
-            
-            # Se for baixar vídeo, verifica se j está baixado
+            # Se for baixar vídeo, verifica se já está baixado
             if not self.skip_video and self.is_already_downloaded(progress_key):
                 logger.info(f"⏭️  Já baixado: {video_title}")
                 # ✅ MELHORIA: Mesmo se vídeo já foi baixado, tenta baixar extras se habilitado
