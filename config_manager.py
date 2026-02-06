@@ -4,6 +4,7 @@ Inclui opção para baixar materiais complementares
 Parte 1/5 da refatoração
 """
 import json
+import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 from cryptography.fernet import Fernet, InvalidToken
@@ -287,8 +288,11 @@ class ConfigManager:
         if pdf_folder:
             try:
                 pdf_path = Path(pdf_folder)
-                if not pdf_path.parent.exists():
-                    errors.append(f"Pasta pai de PDFs não existe: {pdf_path.parent}")
+                pdf_path.mkdir(parents=True, exist_ok=True)
+                if not pdf_path.is_dir():
+                    errors.append(f"Pasta de PDFs inválida: {pdf_path}")
+                elif not os.access(pdf_path, os.W_OK):
+                    errors.append(f"Sem permissão de escrita na pasta de PDFs: {pdf_path}")
             except Exception:
                 errors.append("Caminho de pasta de PDFs inválido")
         
@@ -297,8 +301,11 @@ class ConfigManager:
         if video_folder:
             try:
                 video_path = Path(video_folder)
-                if not video_path.parent.exists():
-                    errors.append(f"Pasta pai de vídeos não existe: {video_path.parent}")
+                video_path.mkdir(parents=True, exist_ok=True)
+                if not video_path.is_dir():
+                    errors.append(f"Pasta de vídeos inválida: {video_path}")
+                elif not os.access(video_path, os.W_OK):
+                    errors.append(f"Sem permissão de escrita na pasta de vídeos: {video_path}")
             except Exception:
                 errors.append("Caminho de pasta de vídeos inválido")
         

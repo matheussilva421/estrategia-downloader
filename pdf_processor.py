@@ -202,8 +202,8 @@ class PDFProcessor(BaseCourseProcessor):
                 file_name = f'{sanitize_filename(base_file_name, 180)} ({pdf_info["name"]}).pdf'
                 file_path = course_dir / file_name
                 
-                # Chave única para controle de progresso
-                progress_key = f'{aula_id}-{pdf_url}'
+                # Chave única para controle de progresso (estável entre execuções)
+                progress_key = f'{aula_id}-{file_name}'
                 
                 # Verifica se já foi baixado (método herdado)
                 if self.is_already_downloaded(progress_key):

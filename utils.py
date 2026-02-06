@@ -4,6 +4,7 @@ Parte 1/5 da refatoração
 """
 import re
 import logging
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Optional, Literal
 import aiohttp
@@ -320,7 +321,10 @@ class QueueHandler(logging.Handler):
                         f"⚠ {self.dropped_messages} mensagens de log foram descartadas (fila cheia)"
                     )
                 except:
-                    pass
+                    print(
+                        f"⚠ {self.dropped_messages} mensagens de log foram descartadas (fila cheia)",
+                        flush=True
+                    )
         
         except Exception:
             self.handleError(record)
@@ -387,7 +391,12 @@ def setup_logger(
     
     # Handler para arquivo
     try:
-        file_handler = logging.FileHandler('downloader.log', encoding='utf-8')
+        file_handler = RotatingFileHandler(
+            'downloader.log',
+            maxBytes=10 * 1024 * 1024,
+            backupCount=5,
+            encoding='utf-8'
+        )
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
     except (OSError, IOError) as e:
